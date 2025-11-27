@@ -1,0 +1,110 @@
+configuration {
+    modi: "combi,drun,run,window";
+    combi-modi: "window,drun,run";
+    display-combi: "All";
+
+    show-icons: true;
+    display-drun: "Apps";
+    display-run: "Run";
+    display-window: "Window";
+    drun-display-format: "{name}";
+    font: "Noto Sans 12"; 
+}
+
+/* The Global Theme - ADAPTA NOKTO COLORS */
+* {
+    /* Adapta Dark Background */
+    background: #222D32; 
+    /* Slightly lighter grey for input box */
+    background-alt: #263238; 
+    /* The Signature Adapta Cyan/Teal */
+    selected: #00BCD4; 
+    /* Text Color */
+    foreground: #CFD8DC; 
+    
+    /* RESET: Force everything to transparent/none by default so we control it */
+    background-color: transparent;
+    text-color: @foreground;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    width: 45%;
+    transparency: "real";
+    background-color: @background; /* The main window background */
+    /* Border removed as requested */
+    border: 0px; 
+}
+
+mainbox {
+    children: [inputbar, listview];
+    background-color: @background;
+}
+
+inputbar {
+    background-color: @background-alt;
+    children: [prompt, entry];
+    padding: 12px;
+}
+
+prompt {
+    text-color: @selected; 
+    padding: 0 10px 0 0;
+}
+
+entry {
+    text-color: @foreground;
+    placeholder: "Type to search...";
+    placeholder-color: #546E7A;
+}
+
+listview {
+    lines: 10;
+    padding: 8px;
+    background-color: @background;
+}
+
+/* --- THE FIX FOR THE STRIPES --- */
+/* We explicitly define the background for every state to prevent default theme bleed-through */
+
+element {
+    padding: 8px;
+    text-color: @foreground;
+    background-color: @background; /* Default dark */
+}
+
+element normal.normal {
+    background-color: @background-alt;
+    text-color: @foreground;
+}
+
+element alternate.normal {
+    background-color: @background; /* Force the alternating row to be dark too */
+    text-color: @foreground;
+}
+
+/* --- SELECTION STYLE --- */
+
+element selected.normal {
+    background-color: @selected; /* Cyan highlight */
+    text-color: #ffffff; /* White text */
+}
+
+element selected.active {
+    background-color: @selected;
+    text-color: #ffffff;
+}
+
+/* Icon handling */
+element-icon {
+    size: 24px;
+    padding: 0 10px 0 0;
+    vertical-align: 0.5;
+}
+
+element-text {
+    vertical-align: 0.5;
+}

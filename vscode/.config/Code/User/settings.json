@@ -1,0 +1,28 @@
+{
+    "workbench.colorTheme": "AdaptaNokto",
+    "editor.lineNumbers": "relative",
+    "git.confirmSync": false,
+    "workbench.iconTheme": "material-icon-theme",
+
+    // Use the custom font for code AND terminal
+    "editor.fontFamily": "'MesloLGS NF', 'Droid Sans Mono', 'monospace', monospace",
+    "terminal.integrated.fontFamily": "'MesloLGS NF'",
+
+    // This turns "=>" into a single arrow symbol, etc.
+    "editor.fontLigatures": true,
+    
+    // Match the font size to your Kitty setup (adjust as needed)
+    "editor.fontSize": 14,
+    "terminal.integrated.fontSize": 13,
+
+    // Make the cursor smooth (like Kitty)
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "on",
+    
+    // Remove the annoying "minimap" (the tiny code preview on the right)
+    // Most "Clean" setups disable this to save space.
+    "editor.minimap.enabled": false,
+
+    "window.titleBarStyle": "custom",
+    "window.dialogStyle": "custom"
+}
