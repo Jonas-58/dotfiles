@@ -159,7 +159,9 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# Power Menu
+bindsym $mod+Shift+e exec ~/scripts/power.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -220,4 +222,16 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym $mod+p exec pavucontrol
 
+# Start Compositor (Shadows/Transparency)
+#exec_always --no-startup-id picom -b
 
+# Suspend (Locks screen first, then sleeps)
+bindsym $mod+Shift+z exec --no-startup-id "~/scripts/lock.sh && systemctl suspend"
+
+# Press Super+L to lock the screen
+bindsym $mod+Escape exec ~/scripts/lock.sh
+
+# Gaps 
+gaps inner 10
+gaps outer 0
+smart_gaps on
