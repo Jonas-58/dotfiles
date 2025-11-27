@@ -55,7 +55,7 @@ rm -rf ~/.config/kitty
 rm -rf ~/.config/rofi
 
 # Run Stow
-stow kitty rofi zsh vscode
+stow kitty rofi zsh vscode scripts
 
 # 7. Change Default Shell to Zsh
 echo "-------------------------------------------------"
