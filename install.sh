@@ -1,66 +1,81 @@
 #!/bin/bash
 
-# Define the packages we want to install
-PACKAGES="git stow curl zsh kitty rofi fonts-roboto fonts-inter"
+# 1. Define Packages
+# Base Utilities
+BASE_PKGS="git stow curl zsh kitty rofi fonts-roboto fonts-inter imagemagick"
+# i3 Window Manager & Applets
+I3_PKGS="i3 i3-wm i3status suckless-tools dunst feh arandr policykit-1-gnome"
+# Audio & GUI Tools
+GUI_PKGS="pavucontrol pasystray scrot lxappearance qt5ct playerctl brightnessctl"
+# Dependencies for building i3lock-color (The fancy lock screen)
+BUILD_DEPS="autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev"
 
 echo "-------------------------------------------------"
 echo "Starting Setup..."
 echo "-------------------------------------------------"
 
-# 1. Update and Install System Packages
-echo "sudo needed for package installation:"
+# 2. Install System Packages
+echo "Installing Packages..."
 sudo apt update
-sudo apt install -y $PACKAGES
+sudo apt install -y $BASE_PKGS $I3_PKGS $GUI_PKGS $BUILD_DEPS
 
-# 2. Install Nerd Fonts (MesloLGS NF)
+# 3. Install Nerd Fonts (MesloLGS NF)
 echo "-------------------------------------------------"
 echo "Installing Fonts..."
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts
-# Download the Regular font (usually sufficient for Terminal)
 curl -fLo "MesloLGS NF Regular.ttf" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
-# Refresh font cache
 fc-cache -fv
 cd - > /dev/null
 
-# 3. Install Oh My Zsh (Unattended)
+# 4. Install Oh My Zsh (Unattended)
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "-------------------------------------------------"
     echo "Installing Oh My Zsh..."
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-else
-    echo "Oh My Zsh already installed."
 fi
 
-# 4. Install Powerlevel10k Theme
+# 5. Install Powerlevel10k & Plugins
 echo "-------------------------------------------------"
-echo "Installing Powerlevel10k..."
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k 2>/dev/null || echo "Already installed."
-
-# 5. Install Zsh Plugins (Autosuggestions & Syntax Highlighting)
-echo "-------------------------------------------------"
-echo "Installing Zsh Plugins..."
+echo "Installing Zsh Theme & Plugins..."
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k 2>/dev/null || echo "P10k already installed."
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions 2>/dev/null || echo "Autosuggestions already installed."
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 2>/dev/null || echo "Syntax Highlighting already installed."
 
-# 6. Stow Dotfiles (Link everything)
+# 6. Compile & Install i3lock-color
+# We need this because standard i3lock doesn't support the ring colors in your script
+if ! command -v i3lock-color &> /dev/null; then
+    echo "-------------------------------------------------"
+    echo "Building i3lock-color..."
+    cd /tmp
+    git clone https://github.com/Raymo111/i3lock-color.git
+    cd i3lock-color
+    ./install-i3lock-color.sh --noverify
+    cd - > /dev/null
+else
+    echo "i3lock-color is already installed."
+fi
+
+# 7. Stow Dotfiles
 echo "-------------------------------------------------"
 echo "Stowing Config Files..."
 cd ~/dotfiles
 
-# IMPORTANT: Delete existing default config files on the new machine
-# so Stow doesn't fail.
+# Delete defaults to prevent conflicts
 rm -f ~/.zshrc
 rm -rf ~/.config/kitty
 rm -rf ~/.config/rofi
+rm -rf ~/.config/i3
+rm -rf ~/.config/i3status
 
-# Run Stow
-stow kitty rofi zsh vscode scripts
+# Run Stow (Added i3, gtk, i3status)
+stow kitty rofi zsh vscode scripts i3 gtk i3status
 
-# 7. Change Default Shell to Zsh
+# 8. Change Default Shell
 echo "-------------------------------------------------"
 echo "Changing default shell to Zsh..."
 sudo chsh -s $(which zsh) $USER
 
 echo "-------------------------------------------------"
-echo "Done! Please restart your computer for changes to take effect."
+echo "Done! Please restart your computer."
+echo "Note: You can run ~/scripts/setup-fonts.sh later to apply font settings."
