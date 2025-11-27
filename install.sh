@@ -8,8 +8,7 @@ I3_PKGS="i3 i3-wm i3status suckless-tools dunst feh arandr policykit-1-gnome"
 # Audio & GUI Tools
 GUI_PKGS="pavucontrol pasystray scrot lxappearance qt5ct playerctl brightnessctl"
 # Dependencies for building i3lock-color (The fancy lock screen)
-BUILD_DEPS="autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev"
-
+BUILD_DEPS="autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev libgif-dev"
 echo "-------------------------------------------------"
 echo "Starting Setup..."
 echo "-------------------------------------------------"
