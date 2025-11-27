@@ -1,0 +1,60 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+general {
+        colors = true
+        interval = 5
+        # Adapta Colors
+        color_good = "#00BCD4"     # Cyan (Healthy/Connected)
+        color_degraded = "#FFD54F" # Yellow (Warning)
+        color_bad = "#FF5252"      # Red (Critical/Disconnected)
+}
+
+# Order of modules to show
+#order += "wireless _first_"
+order += "ethernet _first_"
+#order += "disk /"
+order += "memory"
+order += "volume master"
+#order += "battery all"
+order += "tztime local"
+
+wireless _first_ {
+        # Show IP if connected, otherwise hide
+        format_up = "WIFI: %ip"
+        format_down = ""
+}
+
+ethernet _first_ {
+        format_up = "ETH: %ip"
+        format_down = ""
+}
+
+disk "/" {
+        format = "SSD: %avail"
+}
+
+memory {
+        format = "RAM: %used"
+        threshold_degraded = "1G"
+}
+
+volume master {
+        format = "VOL: %volume"
+        format_muted = "VOL: MUTE"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+battery all {
+        # Format: "BAT: 80%"
+        format = "BAT: %percentage"
+        format_down = ""
+        last_full_capacity = true
+        integer_battery_capacity = true
+}
+
+tztime local {
+        format = "%d.%m.%Y   %H:%M"
+}
