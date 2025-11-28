@@ -2,7 +2,7 @@
 
 # 1. Define Packages
 # Base Utilities
-BASE_PKGS="git stow curl zsh kitty rofi fonts-roboto fonts-inter imagemagick"
+BASE_PKGS="git stow curl zsh kitty rofi fonts-roboto fonts-inter imagemagick flameshot"
 # i3 Window Manager & Applets
 I3_PKGS="i3 i3-wm i3status suckless-tools dunst feh arandr policykit-1-gnome"
 # Audio & GUI Tools
