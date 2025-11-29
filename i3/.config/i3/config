@@ -208,7 +208,7 @@ workspace 2 output DP-4
 workspace 3 output DP-0
 
 # Start the Audio Tray Applet
-exec_always --no-startup-id killall pasystray; sleep 1; pasystray
+#exec_always --no-startup-id killall pasystray; sleep 1; pasystray
 
 # Volume Media Keys (requires pactl, which comes with Mint)
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
