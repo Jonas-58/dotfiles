@@ -197,7 +197,7 @@ bindsym $mod+r mode "resize"
 # PrintScreen key fires up the snipping tool
 bindsym Print exec flameshot gui
 
-exec_always --no-startup-id feh --bg-scale /usr/share/backgrounds/linuxmint/default_background.jpg
+exec_always --no-startup-id ~/.fehbg
 
 # Load Xresources on startup to fix cursor size
 exec_always --no-startup-id xrdb -merge ~/.Xresources
