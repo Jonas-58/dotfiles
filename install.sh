@@ -68,7 +68,7 @@ rm -rf ~/.config/i3
 rm -rf ~/.config/i3status
 
 # Run Stow (Added i3, gtk, i3status)
-stow kitty rofi zsh vscode scripts i3 gtk i3status
+stow kitty rofi zsh vscode scripts i3 gtk i3status dusnt
 
 # 8. Change Default Shell
 echo "-------------------------------------------------"

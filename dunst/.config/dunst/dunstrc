@@ -1,0 +1,40 @@
+[global]
+    # Display
+    monitor = 0
+    follow = mouse
+    #width = 300
+    width = (400, 600)
+    height = 100
+    origin = top-right
+    offset = 20x50       # 20px from right, 50px from top (below bar)
+    
+    # Appearance
+    font = Roboto Medium 13
+    frame_width = 2
+    frame_color = "#00BCD4"  # Cyan Border
+    separator_color = frame
+    corner_radius = 4    # Rounded corners
+    
+    # Behavior
+    sort = yes
+    idle_threshold = 120
+    line_height = 0
+    markup = full
+    padding = 10
+    horizontal_padding = 10
+
+[urgency_low]
+    background = "#222D32"
+    foreground = "#CFD8DC"
+    timeout = 10
+
+[urgency_normal]
+    background = "#222D32"
+    foreground = "#CFD8DC"
+    timeout = 10
+
+[urgency_critical]
+    background = "#222D32"
+    foreground = "#FFFFFF"
+    frame_color = "#FF5252" # Red border for critical errors
+    timeout = 0
