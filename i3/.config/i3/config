@@ -239,3 +239,9 @@ bindsym XF86AudioPrev exec playerctl previous
 # Brightness Controls (Requires 'brightnessctl' package)
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+# Move the focused window to the Scratchpad (Hidden)
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the Scratchpad window (Cycle through them)
+bindsym $mod+minus scratchpad show
