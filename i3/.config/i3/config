@@ -206,6 +206,7 @@ exec_always --no-startup-id xrdb -merge ~/.Xresources
 workspace 1 output DP-2
 workspace 2 output DP-4
 workspace 3 output DP-0
+workspace 10 output HDMI-0
 
 # Start the Audio Tray Applet
 #exec_always --no-startup-id killall pasystray; sleep 1; pasystray
@@ -245,3 +246,6 @@ bindsym $mod+Shift+minus move scratchpad
 
 # Show the Scratchpad window (Cycle through them)
 bindsym $mod+minus scratchpad show
+
+# Display Mode Picker
+bindsym $mod+Shift+p exec ~/scripts/display.sh
