@@ -22,6 +22,14 @@
     markup = full
     padding = 10
     horizontal_padding = 10
+  
+    # Force the Icon Theme
+    enable_recursive_icon_lookup = true
+    icon_theme = Mint-Y    
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 48
+    default_icon = /usr/share/icons/Mint-Y/devices/48/computer.png
 
 [urgency_low]
     background = "#222D32"
