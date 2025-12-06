@@ -6,7 +6,7 @@ BASE_PKGS="git stow curl zsh kitty rofi fonts-roboto fonts-inter imagemagick fla
 # i3 Window Manager & Applets
 I3_PKGS="i3 i3-wm i3status suckless-tools dunst feh arandr policykit-1-gnome"
 # Audio & GUI Tools
-GUI_PKGS="pavucontrol pasystray scrot lxappearance qt5ct playerctl brightnessctl xfce4-power-manager"
+GUI_PKGS="pavucontrol pasystray scrot lxappearance qt5ct playerctl brightnessctl xfce4-power-manager xautolock"
 # Dependencies for building i3lock-color (The fancy lock screen)
 BUILD_DEPS="autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev libgif-dev"
 echo "-------------------------------------------------"
@@ -42,7 +42,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 2>/dev/null || echo "Syntax Highlighting already installed."
 
 # 6. Compile & Install i3lock-color
-# We need this because standard i3lock doesn't support the ring colors in your script
+# We need this because standard i3lock doesn't support the ring colors the script
 if ! command -v i3lock-color &> /dev/null; then
     echo "-------------------------------------------------"
     echo "Building i3lock-color..."
@@ -53,6 +53,21 @@ if ! command -v i3lock-color &> /dev/null; then
     cd - > /dev/null
 else
     echo "i3lock-color is already installed."
+fi
+
+# 6b. Install Greenclip (Clipboard Manager)
+# Not in apt repos, so we grab the binary
+if ! command -v greenclip &> /dev/null; then
+    echo "-------------------------------------------------"
+    echo "Installing Greenclip..."
+    # Download to temp folder
+    wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip -O /tmp/greenclip
+    # Make executable and move to bin
+    chmod +x /tmp/greenclip
+    sudo mv /tmp/greenclip /usr/local/bin/
+    echo "Greenclip installed successfully."
+else
+    echo "Greenclip is already installed."
 fi
 
 # 7. Stow Dotfiles

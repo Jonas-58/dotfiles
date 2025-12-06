@@ -112,3 +112,8 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Created by `pipx` on 2025-11-30 10:56:49
+export PATH="$PATH:/home/dicke/.local/bin"
+fpath=(~/.zsh/completions $fpath)
+autoload -Uz compinit && compinit
