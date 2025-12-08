@@ -45,7 +45,7 @@ theme_str='
 '
 
 # 3. Pass the list to Rofi
-chosen="$(echo -e "$coffee\n$suspend\n$shutdown\n$reboot\n$logout\n$lock" | rofi -dmenu -theme-str "${theme_str}")"
+chosen="$(echo -e "$coffee\n$shutdown\n$suspend\n$reboot\n$logout\n$lock" | rofi -dmenu -theme-str "${theme_str}")"
 
 # 4. Execute the command
 case $chosen in
